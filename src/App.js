@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { USE_STATE, USE_EFFECT } from './routes'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import UseStateCounter from './components/UseStateCounter'
+import UseEffectFriendInfo from './components/UseEffectFriendInfo'
 
-function App() {
+import "./App.css"
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <div className="Side-bar">
+          <ul>
+            <li><Link to={USE_STATE}>use state</Link></li>
+            <li><Link to={USE_EFFECT}>use effect</Link></li>
+          </ul>
+        </div>
+        <div className="Content">
+          <Switch>
+            <Route path={USE_STATE}>
+              <UseStateCounter />
+            </Route>
+            <Route path={USE_EFFECT}>
+              <UseEffectFriendInfo />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
